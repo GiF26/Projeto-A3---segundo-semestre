@@ -1,6 +1,18 @@
-com\mycompany\a3\TelaLogin\TelaLogin$1.class
 com\mycompany\a3\TelaLogin\TelaLogin.class
+com\mycompany\a3\TelaPrestador\TelaCadastroPrestador$1.class
 com\mycompany\a3\TelaLogin\TelaLogin$2.class
+<<<<<<< Updated upstream
 com\mycompany\a3\TelaPrestador\TelaPrestador$1.class
 com\mycompany\a3\TelaPrestador\TelaPrestador.class
+=======
+com\mycompany\a3\TelaCadastroCliente\TelaCadastroCliente.class
+com\mycompany\a3\TelaLogin\TelaLogin$1.class
+com\mycompany\a3\TelaPrestador\Prestador.class
+com\mycompany\a3\TelaPrestador\TelaCadastroPrestador$2.class
+com\mycompany\a3\TelaCadastroCliente\TelaCadastroCliente$2.class
+com\mycompany\a3\TelaCadastroCliente\Cliente.class
+com\mycompany\a3\TelaCadastroCliente\TelaCadastroCliente$1.class
+>>>>>>> Stashed changes
 com\mycompany\a3\A3.class
+com\mycompany\a3\TelaPrestador\TelaCadastroPrestador.class
+com\mycompany\a3\TelaPrestador\TelaCadastroPrestador$3.class
