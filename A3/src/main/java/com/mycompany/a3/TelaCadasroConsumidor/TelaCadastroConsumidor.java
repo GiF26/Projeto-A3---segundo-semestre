@@ -28,53 +28,63 @@ public class TelaCadastroConsumidor extends javax.swing.JPanel {
 
         txt1 = new javax.swing.JPanel();
         lblCadastro = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        txt2 = new javax.swing.JTextField();
-        txt3 = new javax.swing.JTextField();
-        txt4 = new javax.swing.JTextField();
-        txt5 = new javax.swing.JTextField();
-        txt6 = new javax.swing.JTextField();
-        txt7 = new javax.swing.JTextField();
-        rbtn1 = new javax.swing.JRadioButton();
-        rbtn2 = new javax.swing.JRadioButton();
-        jButton2 = new javax.swing.JButton();
-        btn1 = new javax.swing.JButton();
+        txtNomeCompleto = new javax.swing.JTextField();
+        txtCPF = new javax.swing.JTextField();
+        txtNúmeroDoTelefone = new javax.swing.JTextField();
+        txtEndereço = new javax.swing.JTextField();
+        txtnúmero = new javax.swing.JTextField();
+        txtBairro = new javax.swing.JTextField();
+        txtDataDeNascimento = new javax.swing.JTextField();
+        btnMasculino = new javax.swing.JRadioButton();
+        btnFeminino = new javax.swing.JRadioButton();
+        btnCancelar = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
+        lblNomeCompleto = new javax.swing.JLabel();
+        lblCPF = new javax.swing.JLabel();
+        lblNúmeroDeTelefone = new javax.swing.JLabel();
+        lblDataDeNascimento = new javax.swing.JLabel();
+        lblEndereço = new javax.swing.JLabel();
+        lblNúmero = new javax.swing.JLabel();
+        lblBairro = new javax.swing.JLabel();
 
         lblCadastro.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblCadastro.setText("Cadastro do Consumidor");
 
-        jTextField1.setText("Nome Completo");
-
-        txt2.setText("CPF");
-        txt2.addActionListener(new java.awt.event.ActionListener() {
+        txtCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt2ActionPerformed(evt);
+                txtCPFActionPerformed(evt);
             }
         });
 
-        txt3.setText("Número de Telefone");
-        txt3.addActionListener(new java.awt.event.ActionListener() {
+        txtNúmeroDoTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt3ActionPerformed(evt);
+                txtNúmeroDoTelefoneActionPerformed(evt);
             }
         });
 
-        txt4.setText("Endereço");
+        txtnúmero.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
-        txt5.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txt5.setText("Nº");
+        btnMasculino.setText("Masculino");
 
-        txt6.setText("Bairro");
+        btnFeminino.setText("Feminino");
 
-        txt7.setText("Data de Nascimento");
+        btnCancelar.setText("Cancelar");
 
-        rbtn1.setText("Masculino");
+        btnConfirmar.setText("Confirmar");
 
-        rbtn2.setText("Feminino");
+        lblNomeCompleto.setText("Nome Completo");
 
-        jButton2.setText("Cancelar");
+        lblCPF.setText("CPF");
 
-        btn1.setText("Confirmar");
+        lblNúmeroDeTelefone.setText("Número de Telefone");
+
+        lblDataDeNascimento.setText("Data de Nascimento");
+
+        lblEndereço.setText("Endereço");
+
+        lblNúmero.setText("Nº");
+
+        lblBairro.setText("Bairro");
 
         javax.swing.GroupLayout txt1Layout = new javax.swing.GroupLayout(txt1);
         txt1.setLayout(txt1Layout);
@@ -82,30 +92,42 @@ public class TelaCadastroConsumidor extends javax.swing.JPanel {
             txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, txt1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCPF, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblNúmeroDeTelefone, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblNomeCompleto, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDataDeNascimento, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblEndereço, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblNúmero, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtEndereço, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNúmeroDoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(txt1Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMasculino)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn1))
+                        .addComponent(btnFeminino)
+                        .addGap(12, 12, 12))
                     .addGroup(txt1Layout.createSequentialGroup()
-                        .addComponent(txt5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(txt1Layout.createSequentialGroup()
+                                .addComponent(txtnúmero, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblBairro)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt6, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txt4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(txt1Layout.createSequentialGroup()
-                        .addComponent(rbtn1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rbtn2)
-                        .addGap(12, 12, 12)))
+                        .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtBairro)
+                            .addComponent(btnConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(221, 221, 221))
             .addGroup(txt1Layout.createSequentialGroup()
                 .addGap(169, 169, 169)
                 .addComponent(lblCadastro)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         txt1Layout.setVerticalGroup(
             txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,27 +135,39 @@ public class TelaCadastroConsumidor extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lblCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbtn2)
-                    .addComponent(rbtn1))
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCPF))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNúmeroDoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNúmeroDeTelefone))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDataDeNascimento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFeminino)
+                    .addComponent(btnMasculino))
                 .addGap(9, 9, 9)
-                .addComponent(txt4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEndereço, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEndereço))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtnúmero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNúmero)
+                    .addComponent(lblBairro))
                 .addGap(18, 18, 18)
                 .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(btn1))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnConfirmar))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -142,6 +176,7 @@ public class TelaCadastroConsumidor extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addComponent(txt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -151,28 +186,35 @@ public class TelaCadastroConsumidor extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt3ActionPerformed
+    private void txtNúmeroDoTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNúmeroDoTelefoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt3ActionPerformed
+    }//GEN-LAST:event_txtNúmeroDoTelefoneActionPerformed
 
-    private void txt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt2ActionPerformed
+    private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt2ActionPerformed
+    }//GEN-LAST:event_txtCPFActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JRadioButton btnFeminino;
+    private javax.swing.JRadioButton btnMasculino;
+    private javax.swing.JLabel lblBairro;
+    private javax.swing.JLabel lblCPF;
     private javax.swing.JLabel lblCadastro;
-    private javax.swing.JRadioButton rbtn1;
-    private javax.swing.JRadioButton rbtn2;
+    private javax.swing.JLabel lblDataDeNascimento;
+    private javax.swing.JLabel lblEndereço;
+    private javax.swing.JLabel lblNomeCompleto;
+    private javax.swing.JLabel lblNúmero;
+    private javax.swing.JLabel lblNúmeroDeTelefone;
     private javax.swing.JPanel txt1;
-    private javax.swing.JTextField txt2;
-    private javax.swing.JTextField txt3;
-    private javax.swing.JTextField txt4;
-    private javax.swing.JTextField txt5;
-    private javax.swing.JTextField txt6;
-    private javax.swing.JTextField txt7;
+    private javax.swing.JTextField txtBairro;
+    private javax.swing.JTextField txtCPF;
+    private javax.swing.JTextField txtDataDeNascimento;
+    private javax.swing.JTextField txtEndereço;
+    private javax.swing.JTextField txtNomeCompleto;
+    private javax.swing.JTextField txtNúmeroDoTelefone;
+    private javax.swing.JTextField txtnúmero;
     // End of variables declaration//GEN-END:variables
 }
