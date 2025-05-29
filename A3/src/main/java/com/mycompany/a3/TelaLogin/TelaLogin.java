@@ -1,5 +1,6 @@
 package com.mycompany.a3.TelaLogin;
 
+import com.mycompany.a3.TelaCadasroConsumidor.TelaCadastroConsumidor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -207,13 +208,14 @@ public class TelaLogin extends javax.swing.JFrame {
         });
     }
     
+    //bug no botao 
     private void clickBtnCadConsumidor(){
         btnCadConsumidor.setVisible(true);
         btnCadConsumidor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                TelaCadastroConsumidor telaCadastroConsumidor = new TelaCadastroConsumidor();
-//                telaCadastroConsumidor.setVisible(true);
+                TelaCadastroConsumidor telaCadastroConsumidor = new TelaCadastroConsumidor();
+                telaCadastroConsumidor.setVisible(true);
             }
         });
     }
