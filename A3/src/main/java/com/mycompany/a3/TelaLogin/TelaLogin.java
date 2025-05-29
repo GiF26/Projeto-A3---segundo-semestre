@@ -1,8 +1,8 @@
 package com.mycompany.a3.TelaLogin;
 
-import com.mycompany.a3.TelaCadasroConsumidor.TelaCadastroConsumidor;
+import com.mycompany.a3.TelaCadastroCliente.TelaCadastroCliente;
+import com.mycompany.a3.TelaPrestador.TelaCadastroPrestador;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class TelaLogin extends javax.swing.JFrame {
     
@@ -200,23 +200,16 @@ public class TelaLogin extends javax.swing.JFrame {
     
     private void clickBtnCadPrestadorServico(){
         btnCadPrestador.setVisible(true);
-        btnCadPrestador.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                
-            }
+        btnCadPrestador.addActionListener((ActionEvent e) -> {
+           new TelaCadastroPrestador().setVisible(true); // chama tela
         });
     }
     
     //bug no botao 
     private void clickBtnCadConsumidor(){
-        btnCadConsumidor.setVisible(true);
-        btnCadConsumidor.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                TelaCadastroConsumidor telaCadastroConsumidor = new TelaCadastroConsumidor();
-                telaCadastroConsumidor.setVisible(true);
-            }
+        btnCadConsumidor.addActionListener((ActionEvent e) -> {
+            new TelaCadastroCliente().setVisible(true);
+
         });
     }
 }
