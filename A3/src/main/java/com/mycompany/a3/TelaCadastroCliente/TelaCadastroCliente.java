@@ -4,6 +4,12 @@
  */
 package com.mycompany.a3.TelaCadastroCliente;
 
+import com.mycompany.a3.TelaPrestador.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Giovana Ferreira
@@ -13,10 +19,12 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCadastroCliente.class.getName());
 
     /**
-     * Creates new form NewJFrame
+     * Creates new form TelaCadastroPrestador
      */
     public TelaCadastroCliente() {
         initComponents();
+        eventos();
+        clickBtnConfirmar();
     }
 
     /**
@@ -30,86 +38,86 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
         txt1 = new javax.swing.JPanel();
         lblCadastro = new javax.swing.JLabel();
-        txtNomeCompleto = new javax.swing.JTextField();
-        txt2 = new javax.swing.JTextField();
-        txt3 = new javax.swing.JTextField();
-        txt4 = new javax.swing.JTextField();
-        txt5 = new javax.swing.JTextField();
-        txt6 = new javax.swing.JTextField();
-        txt7 = new javax.swing.JTextField();
-        rbtn1 = new javax.swing.JRadioButton();
-        rbtn2 = new javax.swing.JRadioButton();
+        txtNome = new javax.swing.JTextField();
+        txtCpf = new javax.swing.JTextField();
+        txtTelefone = new javax.swing.JTextField();
+        txtEnd = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
+        txtBairro = new javax.swing.JTextField();
+        rbMasc = new javax.swing.JRadioButton();
+        rbFem = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
-        btn1 = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
+        txtfDataNascimento = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblCadastro.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblCadastro.setText("Cadastro do Consumidor");
 
-        txtNomeCompleto.setText("Nome Completo");
+        txtNome.setText("Nome Completo");
 
-        txt2.setText("CPF");
-        txt2.addActionListener(new java.awt.event.ActionListener() {
+        txtCpf.setText("CPF");
+        txtCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt2ActionPerformed(evt);
+                txtCpfActionPerformed(evt);
             }
         });
 
-        txt3.setText("Número de Telefone");
-        txt3.addActionListener(new java.awt.event.ActionListener() {
+        txtTelefone.setText("Número de Telefone");
+        txtTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt3ActionPerformed(evt);
+                txtTelefoneActionPerformed(evt);
             }
         });
 
-        txt4.setText("Endereço");
+        txtEnd.setText("Endereço");
 
-        txt5.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txt5.setText("Nº");
+        txtNumero.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtNumero.setText("Nº");
 
-        txt6.setText("Bairro");
+        txtBairro.setText("Bairro");
 
-        txt7.setText("Data de Nascimento");
+        rbMasc.setText("Masculino");
 
-        rbtn1.setText("Masculino");
-
-        rbtn2.setText("Feminino");
+        rbFem.setText("Feminino");
 
         jButton2.setText("Cancelar");
 
-        btn1.setText("Confirmar");
+        btnConfirmar.setText("Confirmar");
+
+        txtfDataNascimento.setText("Data de nascimento");
 
         javax.swing.GroupLayout txt1Layout = new javax.swing.GroupLayout(txt1);
         txt1.setLayout(txt1Layout);
         txt1Layout.setHorizontalGroup(
             txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(txt1Layout.createSequentialGroup()
+                .addGap(169, 169, 169)
+                .addComponent(lblCadastro)
+                .addContainerGap(183, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, txt1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(txt1Layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn1))
+                        .addComponent(btnConfirmar))
                     .addGroup(txt1Layout.createSequentialGroup()
-                        .addComponent(txt5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt6, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txt4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEnd)
+                    .addComponent(txtCpf)
+                    .addComponent(txtNome)
+                    .addComponent(txtTelefone)
                     .addGroup(txt1Layout.createSequentialGroup()
-                        .addComponent(rbtn1)
+                        .addComponent(rbMasc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rbtn2)
-                        .addGap(12, 12, 12)))
+                        .addComponent(rbFem)
+                        .addGap(12, 12, 12))
+                    .addComponent(txtfDataNascimento))
                 .addGap(221, 221, 221))
-            .addGroup(txt1Layout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addComponent(lblCadastro)
-                .addContainerGap(157, Short.MAX_VALUE))
         );
         txt1Layout.setVerticalGroup(
             txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,28 +125,28 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtfDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbtn2)
-                    .addComponent(rbtn1))
+                    .addComponent(rbFem)
+                    .addComponent(rbMasc))
                 .addGap(9, 9, 9)
-                .addComponent(txt4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(txt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(btn1))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(btnConfirmar))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,19 +159,19 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt2ActionPerformed
+    private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt2ActionPerformed
+    }//GEN-LAST:event_txtCpfActionPerformed
 
-    private void txt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt3ActionPerformed
+    private void txtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt3ActionPerformed
+    }//GEN-LAST:event_txtTelefoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,18 +199,43 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn1;
+    private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel lblCadastro;
-    private javax.swing.JRadioButton rbtn1;
-    private javax.swing.JRadioButton rbtn2;
+    private javax.swing.JRadioButton rbFem;
+    private javax.swing.JRadioButton rbMasc;
     private javax.swing.JPanel txt1;
-    private javax.swing.JTextField txt2;
-    private javax.swing.JTextField txt3;
-    private javax.swing.JTextField txt4;
-    private javax.swing.JTextField txt5;
-    private javax.swing.JTextField txt6;
-    private javax.swing.JTextField txt7;
-    private javax.swing.JTextField txtNomeCompleto;
+    private javax.swing.JTextField txtBairro;
+    private javax.swing.JTextField txtCpf;
+    private javax.swing.JTextField txtEnd;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtTelefone;
+    private javax.swing.JFormattedTextField txtfDataNascimento;
     // End of variables declaration//GEN-END:variables
+
+public void eventos(){
+    setLocationRelativeTo(null);
+}
+
+public void clickBtnConfirmar(){
+    
+    btnConfirmar.setVisible(true);
+    
+    btnConfirmar.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            Cliente c = new Cliente();
+            c.setNome(txtNome.getText());
+            c.setCpf(txtCpf.getText());
+      //    p.setDataNascimento(txtfDataNascimento.getText());
+      //    p.setEmail(txt);//Falta campo email
+            c.setEndereco(txtEnd.getText());
+            c.setTelefone(txtTelefone.getText());
+    
+            c.salvar();
+        }
+    });
+   }
 }

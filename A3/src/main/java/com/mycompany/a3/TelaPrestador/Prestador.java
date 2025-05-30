@@ -1,5 +1,10 @@
 package com.mycompany.a3.TelaPrestador;
 
+import com.mycompany.a3.config.configConexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class Prestador {
@@ -88,17 +93,33 @@ public class Prestador {
     public void salvar(){
         System.out.println(getId());
         System.out.println(getNome());
-        System.out.println(getCpf());
-        System.out.println(getDataNascimento());
         System.out.println(getEmail());
         System.out.println(getSenha());
-        System.out.println(getEndereco());
+        System.out.println(getCpf());
         System.out.println(getTelefone());
+        System.out.println(getEndereco());
+        System.out.println(getDataNascimento());
         System.out.println("Objeto Salvo");
+        
+        
     }
     
     public int geraId(){
-        return 0;
+        
+        String sql = "SELECT MAX(ID) AS MAXID FROM PRESTADOR";
+        
+        try(Connection con = configConexao.getConexao(); PreparedStatement ps = con.prepareStatement(sql)){
+//                ps.setString(1, sql);
+            try(ResultSet rs = ps.executeQuery()){
+                if(rs.next()){
+                    return rs.getInt("MAX_ID") + 1;
+                }
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return 1;
     }
     
     

@@ -1,5 +1,13 @@
 package com.mycompany.a3.TelaCadastroCliente;
 
+import com.mycompany.a3.config.configConexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+
 public class Cliente {
     private int id;
     private String nome;
@@ -81,6 +89,99 @@ public class Cliente {
 
     public void setIdContrato(int idContrato) {
         this.idContrato = idContrato;
+    }
+    
+    public void salvar(){
+        System.out.println(getId());
+        System.out.println(getNome());
+        System.out.println(getEmail());
+        System.out.println(getSenha());
+        System.out.println(getCpf());
+        System.out.println(getTelefone());
+        System.out.println(getEndereco());
+        System.out.println(getDataNascimento());
+        System.out.println("Objeto Salvo");
+        
+//        String sql = "INSERT INTO USUARIO (ID, NOME, EMAIL, SENHA, CPF, TELEFONE, ENDERENCO, DATA_NASCIMENTO)" +
+//                " VALUES ( " + geraId() + "," + getNome() + "," + getEmail() + "," + getSenha() + "," + getCpf() +
+//                "," + getTelefone() + "," + getEndereco() + "," + getDataNascimento() + ")";
+
+
+    inserirUsuario();
+    }
+    
+    public boolean inserirUsuario() {
+    String sql = "INSERT INTO USUARIO (ID, NOME, EMAIL, SENHA, CPF, TELEFONE) " +
+                 "VALUES (?, ?, ?, ?, ?, ?)";
+
+    try (Connection con = configConexao.getConexao();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        // Verificação básica de conexão
+        if (con == null) {
+            throw new SQLException("Falha na conexão com o banco de dados");
+        }
+
+        // 1. ID - Verifique se geraId() retorna um valor válido
+        int id = geraId();
+        ps.setInt(1, id);
+
+        // 2. Nome - Verifique se não é nulo
+        String nome = getNome();
+        ps.setString(2, nome);
+
+        // 3. Email - Validação básica
+        String email = "";
+        ps.setString(3, email);
+
+        // 4. Senha - Nunca armazene em texto puro
+        String senha = "amdin123";
+        ps.setString(4, senha);
+
+        // 5. CPF - Remova formatação
+        String cpf = getCpf();
+        ps.setString(5, cpf);
+
+        // 6. Telefone - Remova formatação
+        String telefone = getTelefone();
+        ps.setString(6, telefone);
+
+        // 7. Endereço
+//        String endereco = "     ";
+//        ps.setString(7, endereco);
+
+        // 8. Data de Nascimento - Conversão adequada
+
+
+        // Executar a inserção
+        int linhasAfetadas = ps.executeUpdate();
+        return linhasAfetadas > 0;
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, 
+            "Erro no banco de dados: " + e.getMessage(),
+            "Erro", JOptionPane.ERROR_MESSAGE);
+        return false;
+    } catch (IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(null, 
+            "Dados inválidos: " + e.getMessage(),
+            "Erro de Validação", JOptionPane.WARNING_MESSAGE);
+        return false;
+    }
+}
+    
+    private int geraId() {
+        String sql = "SELECT COALESCE(MAX(ID), 0) + 1 FROM USUARIO";
+        try (Connection con = configConexao.getConexao();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            return rs.next() ? rs.getInt(1) : 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1; // Valor inválido que será capturado depois
+        }
     }
 }
 
