@@ -1,5 +1,7 @@
 package com.mycompany.a3.TelaLogin;
 
+import com.mycompany.a3.TelaCadastroCliente.TelaCadastroCliente;
+import com.mycompany.a3.TelaPrestador.TelaCadastroPrestador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -202,7 +204,7 @@ public class TelaLogin extends javax.swing.JFrame {
         btnCadPrestador.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                
+                new TelaCadastroPrestador().setVisible(true);
             }
         });
     }
@@ -211,9 +213,8 @@ public class TelaLogin extends javax.swing.JFrame {
         btnCadConsumidor.setVisible(true);
         btnCadConsumidor.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-//                TelaCadastroConsumidor telaCadastroConsumidor = new TelaCadastroConsumidor();
-//                telaCadastroConsumidor.setVisible(true);
+            public void actionPerformed(ActionEvent e) {    
+                new TelaCadastroCliente().setVisible(true);
             }
         });
     }
