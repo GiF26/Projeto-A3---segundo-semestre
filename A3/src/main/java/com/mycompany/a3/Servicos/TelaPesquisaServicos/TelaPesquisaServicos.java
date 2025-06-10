@@ -1,8 +1,10 @@
 package com.mycompany.a3.Servicos.TelaPesquisaServicos;
 
-import com.mycompany.a3.Servicos.Contrato.TelaCriaContratoCliente;
+import com.mycompany.a3.Servicos.TelaContrato.TelaCriaContratoCliente;
 import com.mycompany.a3.UsuariosSistemas.TelaCadastroPrestador.Prestador;
 import com.mycompany.a3.UsuariosSistemas.TelaLogin.TelaLogin;
+import static com.mycompany.a3.UsuariosSistemas.TelaLogin.TelaLogin.usuarioSistema;
+import com.mycompany.a3.UsuariosSistemas.UsuarioSistema;
 import com.mycompany.a3.config.configConexao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +26,7 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaPesquisaServicos.class.getName());
     private ArrayList <Prestador> listaPrestador = new ArrayList();
+    private UsuarioSistema usuarioSistema;
 
     public TelaPesquisaServicos() {
         initComponents();
@@ -240,12 +243,21 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
                 p.setDataNascimento(rs.getDate("data_nascimento"));
                 p.setSexo(rs.getInt("SEXO"));
                 
+                int categoria = rs.getInt("CATEGORIA");
+                String nomeCategoria;
+                
+                if(categoria == 0){
+                    nomeCategoria = "Outros";
+                }else{
+                    nomeCategoria = rs.getString("nome_categoria");
+                }
+                
                 Object[] linha = {
                     p.getNome(),
                     p.getCidade(),
                     p.getEstado(),
                     p.getTipoServico() + " - " + rs.getString("nome_service"),
-                    rs.getInt("categoria") + " - " + rs.getString("nome_categoria")
+                    categoria + " - " + nomeCategoria
                 };
                 model.addRow(linha);
                 listaPrestador.add(p);
@@ -263,29 +275,48 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
             
            public void mouseClicked(MouseEvent e) {
             int linha = tblPesquisarPrestador.rowAtPoint(e.getPoint());
-            int coluna = tblPesquisarPrestador.columnAtPoint(e.getPoint());
-
+           
             if (linha != -1) {
-                Object valor = tblPesquisarPrestador.getValueAt(linha, coluna);
                 TelaCriaContratoCliente contrato = new TelaCriaContratoCliente();
+                contrato.getUsuarioSistema(usuarioSistema);
+                dispose();
                 contrato.setVisible(true);
                 contrato.carregaTela(listaPrestador.get(linha));
-//                 JOptionPane.showMessageDialog(null,
-//                        "Você clicou em: " + valor +
-//                        "\n(Linha " + linha + ", Coluna " + coluna + ")");
-            }
-           
-
-//            if (linha != -1) {
-//                Object valor = tabela.getValueAt(linha, coluna);
-//                JOptionPane.showMessageDialog(frame,
-//                        "Você clicou em: " + valor +
-//                        "\n(Linha " + linha + ", Coluna " + coluna + ")");
-//            }
+                }           
             }
         });
-
-//            frame.add(new JScrollPane(tabela), BorderLayout.CENTER);
-//            frame.setVisible(true);
+    }
+    
+    private void clickBtnPesquisar(){
+        btnPesquisar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//             String sql = "SELECT S.ID, S.NOME_SERVICE, S.DESCRICAO, S.CATEGORIA, C.NOME_CATEGORIA" +
+//                        " FROM SERVICE S" + 
+//                        " LEFT JOIN CADASTRO_CATEGORIA C" + 
+//                        " WHERE S.NOME_SERVICE = ? OR C.NOME_CATEGORIA = ?";
+//             
+//             try (Connection con = configConexao.getConexao();
+//             PreparedStatement ps = con.prepareStatement(sql);){
+//        
+//                ps.setString(1, txtPesquisa.getText().trim().toUpperCase());
+//                ps.setString(2, txtPesquisa.getText().trim().toUpperCase());
+//                
+//            
+//            try(ResultSet rs = ps.executeQuery()){
+//                if(rs.next()){
+//                    
+//                }
+//            }
+//                
+//        } catch (SQLException e) {
+//            E.
+//        }
+            }
+        });
+    }
+    
+    public void getUsuarioSistema(UsuarioSistema u){
+        this.usuarioSistema = u;
     }
 }
