@@ -1,4 +1,4 @@
-package com.mycompany.a3.Servicos.TelaContrato;
+package com.mycompany.a3.Servicos.TelasContrato;
 
 import com.mycompany.a3.Recursos.DataFormatFilter;
 import com.mycompany.a3.Servicos.TelaPesquisaServicos.TelaPesquisaServicos;

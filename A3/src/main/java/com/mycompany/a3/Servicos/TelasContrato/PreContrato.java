@@ -1,4 +1,4 @@
-package com.mycompany.a3.Servicos.TelaContrato;
+package com.mycompany.a3.Servicos.TelasContrato;
 
 import com.mycompany.a3.config.configConexao;
 import java.sql.Connection;
@@ -155,4 +155,28 @@ public class PreContrato {
         }
     }
     
+    public boolean updateSatusContrato(int id, int status){
+       
+        String sql = "UPDATE CONTRATOS SET STATUS = ?" +
+                    " WHERE ID = ?";
+        
+        try (Connection con = configConexao.getConexao(); 
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, status);
+            ps.setInt(2, id);
+            
+            int linhasAfetadas = ps.executeUpdate();
+            return linhasAfetadas > 0;
+
+        }  catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,  "Erro no banco de dados: " + e.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null,  "Dados inválidos: " + e.getMessage(),
+                "Erro de Validação", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } 
+    }  
 }

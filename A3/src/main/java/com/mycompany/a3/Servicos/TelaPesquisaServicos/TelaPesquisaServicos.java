@@ -1,9 +1,8 @@
 package com.mycompany.a3.Servicos.TelaPesquisaServicos;
 
-import com.mycompany.a3.Servicos.TelaContrato.TelaCriaContratoCliente;
+import com.mycompany.a3.Servicos.TelasContrato.TelaCriaContratoCliente;
 import com.mycompany.a3.UsuariosSistemas.TelaCadastroPrestador.Prestador;
 import com.mycompany.a3.UsuariosSistemas.TelaLogin.TelaLogin;
-import static com.mycompany.a3.UsuariosSistemas.TelaLogin.TelaLogin.usuarioSistema;
 import com.mycompany.a3.UsuariosSistemas.UsuarioSistema;
 import com.mycompany.a3.config.configConexao;
 import java.awt.event.ActionEvent;
@@ -26,7 +25,7 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaPesquisaServicos.class.getName());
     private ArrayList <Prestador> listaPrestador = new ArrayList();
-    private UsuarioSistema usuarioSistema;
+    private UsuarioSistema usuarioSistema = new UsuarioSistema();
 
     public TelaPesquisaServicos() {
         initComponents();
@@ -46,7 +45,6 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JButton();
-        btnContratar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPesquisarPrestador = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -56,8 +54,6 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnCancelar.setText("Cancelar");
-
-        btnContratar.setText("Contratar");
 
         tblPesquisarPrestador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,11 +75,10 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 334, Short.MAX_VALUE)
-                        .addComponent(btnContratar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -91,9 +86,7 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnContratar))
+                .addComponent(btnCancelar)
                 .addContainerGap())
         );
 
@@ -124,13 +117,13 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +164,6 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnContratar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -185,18 +177,9 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
     }
     
     private void eventos(){
-        clickBtnContratar();
         clickBtnFechar();
         clickItemLista();
-    }
-    
-    private void clickBtnContratar(){
-        btnContratar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new TelaCriaContratoCliente().setVisible(true);
-            }
-        });
+        clickBtnPesquisar();
     }
     
     public void clickBtnFechar(){
@@ -215,59 +198,69 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel(colunas, 0);
         tblPesquisarPrestador.setModel(model);
         
-        String sql = "SELECT p.id, p.nome, p.email, p.cpf, p.telefone, p.cidade, p.estado," +
-                    " p.cep, p.bio, p.tipo_service, s.nome_service, p.sexo," + 
-                    " s.categoria, cc.nome_categoria, p.data_nascimento" +
-                    " FROM PRESTADOR P" + 
-                    " left join service s" + 
-                    " on (s.id = p.tipo_service)" +
-                    " left join cadastro_categoria cc" +
-                    " on (s.categoria = cc.id)";
+        String sql = "SELECT P.ID, P.NOME, P.EMAIL, P.CPF, P.TELEFONE, P.CIDADE, P.ESTADO, " +
+             "P.CEP, P.BIO, P.TIPO_SERVICO, S.NOME_SERVICO, P.SEXO, S.CATEGORIA, " +
+             "CC.NOME_CATEGORIA, P.DATA_NASCIMENTO " +
+             "FROM PRESTADORES P " +
+             "LEFT JOIN SERVICOS S ON (S.ID = P.TIPO_SERVICO) " +
+             "LEFT JOIN CATEGORIAS CC ON (S.CATEGORIA = CC.ID) " +
+             "WHERE (? = '' OR " +  
+             "S.NOME_SERVICO LIKE ? OR " +
+             "CC.NOME_CATEGORIA LIKE ? OR " +
+             "P.NOME LIKE ?)";
+        
+            String termoBusca = txtPesquisa.getText();
+            String termoLike = "%" + termoBusca + "%";            
 
         try (Connection con = configConexao.getConexao();
-             PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            
+                ps.setString(1, termoBusca);
+                ps.setString(2, termoLike);
+                ps.setString(3, termoLike);
+                ps.setString(4, termoLike);
 
-            while (rs.next()) {
-                Prestador p = new Prestador();
-                p.setId(rs.getInt("ID"));
-                p.setNome(rs.getString("nome"));
-                p.setEmail(rs.getString("email"));
-                p.setCpf(rs.getString("CPF"));
-                p.setTelefone(rs.getString("TELEFONE"));
-                p.setCidade(rs.getString("cidade"));
-                p.setEstado(rs.getString("estado"));
-                p.setCep(rs.getString("CEP"));
-                p.setBio(rs.getString("BIO"));
-                p.setTipoServico(rs.getInt("tipo_service"));
-                p.setDataNascimento(rs.getDate("data_nascimento"));
-                p.setSexo(rs.getInt("SEXO"));
-                
-                int categoria = rs.getInt("CATEGORIA");
-                String nomeCategoria;
-                
-                if(categoria == 0){
-                    nomeCategoria = "Outros";
-                }else{
-                    nomeCategoria = rs.getString("nome_categoria");
+                try(ResultSet rs = ps.executeQuery()){
+                    while (rs.next()) {
+                        Prestador p = new Prestador();
+                        p.setId(rs.getInt("ID"));
+                        p.setNome(rs.getString("nome"));
+                        p.setEmail(rs.getString("email"));
+                        p.setCpf(rs.getString("CPF"));
+                        p.setTelefone(rs.getString("TELEFONE"));
+                        p.setCidade(rs.getString("cidade"));
+                        p.setEstado(rs.getString("estado"));
+                        p.setCep(rs.getString("CEP"));
+                        p.setBio(rs.getString("BIO"));
+                        p.setTipoServico(rs.getInt("tipo_servicO"));
+                        p.setDataNascimento(rs.getDate("data_nascimento"));
+                        p.setSexo(rs.getInt("SEXO"));
+
+                        int categoria = rs.getInt("CATEGORIA");
+                        String nomeCategoria;
+
+                        if(categoria == 0){
+                            nomeCategoria = "Outros";
+                        }else{
+                            nomeCategoria = rs.getString("nome_categoria");
+                        }
+
+                        Object[] linha = {
+                            p.getNome(),
+                            p.getCidade(),
+                            p.getEstado(),
+                            p.getTipoServico() + " - " + rs.getString("nome_servicO"),
+                            categoria + " - " + nomeCategoria
+                        };
+                        model.addRow(linha);
+                        listaPrestador.add(p);
+                    }
                 }
-                
-                Object[] linha = {
-                    p.getNome(),
-                    p.getCidade(),
-                    p.getEstado(),
-                    p.getTipoServico() + " - " + rs.getString("nome_service"),
-                    categoria + " - " + nomeCategoria
-                };
-                model.addRow(linha);
-                listaPrestador.add(p);
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, 
+                    "Erro ao carregar prestadores: " + e.getMessage(),
+                    "Erro", JOptionPane.ERROR_MESSAGE);
             }
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, 
-                "Erro ao carregar prestadores: " + e.getMessage(),
-                "Erro", JOptionPane.ERROR_MESSAGE);
-        }
     }
     
     private void clickItemLista(){
@@ -291,27 +284,7 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
         btnPesquisar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-//             String sql = "SELECT S.ID, S.NOME_SERVICE, S.DESCRICAO, S.CATEGORIA, C.NOME_CATEGORIA" +
-//                        " FROM SERVICE S" + 
-//                        " LEFT JOIN CADASTRO_CATEGORIA C" + 
-//                        " WHERE S.NOME_SERVICE = ? OR C.NOME_CATEGORIA = ?";
-//             
-//             try (Connection con = configConexao.getConexao();
-//             PreparedStatement ps = con.prepareStatement(sql);){
-//        
-//                ps.setString(1, txtPesquisa.getText().trim().toUpperCase());
-//                ps.setString(2, txtPesquisa.getText().trim().toUpperCase());
-//                
-//            
-//            try(ResultSet rs = ps.executeQuery()){
-//                if(rs.next()){
-//                    
-//                }
-//            }
-//                
-//        } catch (SQLException e) {
-//            E.
-//        }
+                carregarLista();
             }
         });
     }

@@ -1,6 +1,7 @@
 package com.mycompany.a3.UsuariosSistemas.TelaLogin;
 
 import com.mycompany.a3.Servicos.TelaPesquisaServicos.TelaPesquisaServicos;
+import com.mycompany.a3.Servicos.TelasContrato.TelaRecebeContratoPrestador;
 import com.mycompany.a3.UsuariosSistemas.TelaCadastroCliente.TelaCadastroCliente;
 import com.mycompany.a3.UsuariosSistemas.TelaCadastroPrestador.TelaCadastroPrestador;
 import com.mycompany.a3.UsuariosSistemas.UsuarioSistema;
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
 public class TelaLogin extends JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaLogin.class.getName());
-    public static UsuarioSistema usuarioSistema;
+    public UsuarioSistema usuarioSistema;
 
     public TelaLogin() {
         initComponents();
@@ -185,7 +186,12 @@ public class TelaLogin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if(validaLogin()){
                     dispose();
-                    verificaPerfil(usuarioSistema.getTipoUsuario());
+                    if(usuarioSistema.getTipoUsuario() == 1){
+                        new TelaRecebeContratoPrestador(usuarioSistema).setVisible(true);
+                    }else{
+//                        new TelaPesquisaServicos(usuarioSistema).setVisible(true);
+                        new TelaPesquisaServicos().setVisible(true);
+                    }              
                 } else{
                     JOptionPane.showMessageDialog(null,  "Login ou senha de usuario incorreto",  
                     "Erro", JOptionPane.ERROR_MESSAGE);
@@ -217,12 +223,12 @@ public class TelaLogin extends JFrame {
     private boolean validaLogin(){
 
         String sql = "SELECT ID, CPF, SENHA, TIPOUSUARIO, EMAIL" +
-                    " FROM usuariossistema" + 
+                    " FROM USUARIOSSISTEMA" + 
                     " WHERE" +
                     " (CPF = ? AND SENHA = ?)" +
                     " OR" +
                     " (EMAIL = ? AND SENHA = ?)";
-        
+    
         try (Connection con = configConexao.getConexao();
              PreparedStatement ps = con.prepareStatement(sql);){
         
@@ -239,21 +245,10 @@ public class TelaLogin extends JFrame {
                     return true;
                 }
             }
-                
         } catch (SQLException e) {
             return false;
         }
         return false;
-    }
-
-    private void verificaPerfil(int tipoUsuario) {
-        if(tipoUsuario == 1){
-            JOptionPane.showMessageDialog(null, "TELA NAO DESENVOLVIDA");
-        }else{
-           TelaPesquisaServicos tps = new TelaPesquisaServicos();
-           tps.getUsuarioSistema(usuarioSistema);
-           tps.setVisible(true);
-        }
     }
 }
 

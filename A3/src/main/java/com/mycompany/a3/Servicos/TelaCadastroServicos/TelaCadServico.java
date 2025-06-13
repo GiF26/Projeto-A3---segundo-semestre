@@ -233,7 +233,7 @@ private void configTela(){
     public void carregaComboCategoria(){
         cmbCategoria.removeAllItems(); // Limpa itens existentes
         
-        String sql = "SELECT ID, NOME_CATEGORIA FROM CADASTRO_CATEGORIA ORDER BY ID";
+        String sql = "SELECT ID, NOME_CATEGORIA FROM CATEGORIAS ORDER BY ID";
         
         try (Connection conn = configConexao.getConexao();
          PreparedStatement stmt = conn.prepareStatement(sql);

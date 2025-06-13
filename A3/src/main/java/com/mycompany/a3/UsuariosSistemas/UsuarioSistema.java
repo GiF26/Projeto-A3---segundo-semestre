@@ -54,5 +54,8 @@ public class UsuarioSistema {
         this.cpf = cpf;
         this.senha = senha;
     }
+
+    public UsuarioSistema() {
+    }
    
 }

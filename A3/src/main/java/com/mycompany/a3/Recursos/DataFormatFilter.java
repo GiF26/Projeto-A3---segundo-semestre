@@ -11,15 +11,16 @@ import javax.swing.text.DocumentFilter;
 public class DataFormatFilter extends DocumentFilter {
 
     @Override
-    public void insertString(FilterBypass fb, int offset, 
-                            String string,
-                            AttributeSet attr) throws BadLocationException {
-        if (string == null) return;
+    public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+        if (string == null){
+            return;
+        } 
         replace(fb, offset, 0, string, attr);
     }
 
     @Override
-    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+    public void replace(FilterBypass fb, int offset, int length, String text,
+                        AttributeSet attrs) throws BadLocationException {
         StringBuilder builder = new StringBuilder(fb.getDocument().getText(0, fb.getDocument().getLength()));
         builder.replace(offset, offset + length, text);
         String digits = builder.toString().replaceAll("\\D", "");

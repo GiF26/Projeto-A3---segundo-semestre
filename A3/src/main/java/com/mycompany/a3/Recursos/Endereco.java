@@ -12,7 +12,6 @@ public class Endereco {
     private String localidade;
     private String uf;
     
-    // getters e setters
     public String getLogradouro() { return logradouro; }
     public String getBairro() { return bairro; }
     public String getLocalidade() { return localidade; }

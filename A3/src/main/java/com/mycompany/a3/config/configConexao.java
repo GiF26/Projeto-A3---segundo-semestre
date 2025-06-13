@@ -14,16 +14,14 @@ public class configConexao {
 
     public static Connection getConexao() {
         try {
-            // 1. Registrar o driver (não é mais necessário a partir do JDBC 4.0, mas não faz mal)
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // 2. URL de conexão para MySQL
             String url = "jdbc:mysql://" + HOST + ":" + PORTA + "/" + DB + TIMEZONE_CONFIG;
 
-            // 3. Obter conexão
             Connection c = DriverManager.getConnection(url, USUARIO, SENHA);
             System.out.println("Conexão com MySQL estabelecida com sucesso!");
             return c;
+
         } catch (ClassNotFoundException e) {
             System.err.println("Driver JDBC não encontrado!");
             e.printStackTrace();

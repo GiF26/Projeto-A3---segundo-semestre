@@ -469,8 +469,8 @@ public class TelaCadastroPrestador extends javax.swing.JFrame {
     public void carregaCmbServico(){
         cmbTipoServico.removeAllItems();
         
-        String sql = "SELECT ID, NOME_SERVICE" + 
-                    " FROM SERVICE" + 
+        String sql = "SELECT ID, NOME_SERVICO" + 
+                    " FROM SERVICOS" + 
                     " ORDER BY ID";
         
         try (Connection conn = configConexao.getConexao();
@@ -478,7 +478,7 @@ public class TelaCadastroPrestador extends javax.swing.JFrame {
             ResultSet rs = stmt.executeQuery()) {
         
             while (rs.next()) {
-                cmbTipoServico.addItem(rs.getString("ID") + " - " + rs.getString("NOME_SERVICE"));
+                cmbTipoServico.addItem(rs.getString("ID") + " - " + rs.getString("NOME_SERVICO"));
             }
             cmbTipoServico.addItem("Cadastrar Serviço");
         
