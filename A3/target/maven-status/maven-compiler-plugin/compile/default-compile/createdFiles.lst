@@ -19,7 +19,9 @@ com\mycompany\a3\FormularioBase.class
 com\mycompany\a3\Servicos\TelaPesquisaServicos\TelaPesquisaServicos.class
 com\mycompany\a3\Servicos\TelasContrato\TelaCriaContratoCliente$2.class
 com\mycompany\a3\Servicos\TelasContrato\TelaDecisaoContrato$3.class
+com\mycompany\a3\Recursos\RecursosAutomacao.class
 com\mycompany\a3\UsuariosSistemas\TelaCadastroPrestador\TelaCadastroPrestador$2.class
+com\mycompany\a3\Servicos\TelasContrato\TelaRecebeContratoPrestador$4.class
 com\mycompany\a3\UsuariosSistemas\TelaCadastroCliente\TelaCadastroCliente$5.class
 com\mycompany\a3\UsuariosSistemas\TelaLogin\TelaLogin$3.class
 com\mycompany\a3\Servicos\TelaCadastroServicos\TelaCadServico.class

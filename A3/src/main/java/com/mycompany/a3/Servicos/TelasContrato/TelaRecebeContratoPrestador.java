@@ -1,7 +1,12 @@
 package com.mycompany.a3.Servicos.TelasContrato;
 
+import com.mycompany.a3.Recursos.Endereco;
+import com.mycompany.a3.Recursos.RecursosAutomacao;
+import com.mycompany.a3.Recursos.ViaCEPClient;
+import com.mycompany.a3.Servicos.TelaCadastroServicos.Servico;
 import com.mycompany.a3.UsuariosSistemas.TelaCadastroCliente.Cliente;
 import com.mycompany.a3.UsuariosSistemas.TelaCadastroPrestador.Prestador;
+import com.mycompany.a3.UsuariosSistemas.TelaCadastroPrestador.TelaCadastroPrestador;
 import com.mycompany.a3.UsuariosSistemas.TelaLogin.TelaLogin;
 import com.mycompany.a3.UsuariosSistemas.UsuarioSistema;
 import com.mycompany.a3.config.configConexao;
@@ -13,9 +18,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -73,7 +87,6 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
         lblComplemento = new javax.swing.JLabel();
         lblServico = new javax.swing.JLabel();
         lblDataNascimento = new javax.swing.JLabel();
-        lblAvaliacao = new javax.swing.JLabel();
         lblSexo = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
@@ -86,7 +99,6 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
         txtNumero = new javax.swing.JTextField();
         txtComplemento = new javax.swing.JTextField();
         txtDataNascimento = new javax.swing.JTextField();
-        txtAvaliacao1 = new javax.swing.JTextField();
         cmbSexo = new javax.swing.JComboBox<>();
         btnCancelar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -94,6 +106,8 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
         lblCategoria = new javax.swing.JLabel();
         cmbServico = new javax.swing.JComboBox<>();
         cmbCategoria = new javax.swing.JComboBox<>();
+        lblBairro = new javax.swing.JLabel();
+        txtBairro = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,7 +132,7 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
             jpnPropostaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnPropostaLayout.createSequentialGroup()
                 .addGroup(jpnPropostaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 883, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1064, Short.MAX_VALUE)
                     .addGroup(jpnPropostaLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnCancelarPropos)
@@ -164,8 +178,6 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
 
         lblDataNascimento.setText("Nascimento");
 
-        lblAvaliacao.setText("Avaliação");
-
         lblSexo.setText("Sexo");
 
         cmbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -183,6 +195,8 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
 
         cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        lblBairro.setText("Bairro");
+
         javax.swing.GroupLayout jpnPerfilLayout = new javax.swing.GroupLayout(jpnPerfil);
         jpnPerfil.setLayout(jpnPerfilLayout);
         jpnPerfilLayout.setHorizontalGroup(
@@ -198,7 +212,7 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnPerfilLayout.createSequentialGroup()
-                            .addGap(103, 103, 103)
+                            .addGap(150, 150, 150)
                             .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(txtNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,11 +235,14 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                                     .addComponent(lblRua, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblTelefone)
                                     .addComponent(lblCep)
-                                    .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(42, 42, 42)
-                                .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jpnPerfilLayout.createSequentialGroup()
+                                        .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblBairro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(33, 33, 33)
+                                        .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblCPF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,35 +253,38 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnSalvar))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnPerfilLayout.createSequentialGroup()
-                                .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblComplemento)
-                                    .addComponent(lblServico, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(lblAvaliacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblCategoria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jpnPerfilLayout.createSequentialGroup()
-                                        .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(jpnPerfilLayout.createSequentialGroup()
+                                        .addComponent(lblServico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(52, 52, 52)))
+                                .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jpnPerfilLayout.createSequentialGroup()
+                                        .addGap(33, 33, 33)
+                                        .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtBairro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                                            .addComponent(txtComplemento, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtRua, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lblNumero)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnPerfilLayout.createSequentialGroup()
-                                        .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(cmbCategoria, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(cmbServico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(224, 224, 224))
-                                    .addComponent(txtAvaliacao1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(cmbServico, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnPerfilLayout.createSequentialGroup()
+                                            .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(224, 224, 224))))))))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         jpnPerfilLayout.setVerticalGroup(
             jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnPerfilLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpnPerfilLayout.createSequentialGroup()
                         .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNome)
@@ -286,15 +306,12 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTelefone)
-                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCep)
-                    .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtBio)
-                    .addGroup(jpnPerfilLayout.createSequentialGroup()
+                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCep)
+                            .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblCidade)
@@ -308,6 +325,10 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                             .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblBairro)
+                            .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblComplemento)
                             .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -318,15 +339,15 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                         .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCategoria)
                             .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
-                        .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAvaliacao)
-                            .addComponent(txtAvaliacao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                         .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCancelar)
                             .addComponent(btnExcluir)
-                            .addComponent(btnSalvar))))
+                            .addComponent(btnSalvar)))
+                    .addGroup(jpnPerfilLayout.createSequentialGroup()
+                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtBio)))
                 .addContainerGap())
         );
 
@@ -338,8 +359,7 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jtAbas)
-                .addContainerGap())
+                .addComponent(jtAbas, javax.swing.GroupLayout.DEFAULT_SIZE, 1070, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,7 +409,7 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
     private javax.swing.JPanel jpnPerfil;
     private javax.swing.JPanel jpnProposta;
     private javax.swing.JTabbedPane jtAbas;
-    private javax.swing.JLabel lblAvaliacao;
+    private javax.swing.JLabel lblBairro;
     private javax.swing.JLabel lblCPF;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblCep;
@@ -406,7 +426,7 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
     private javax.swing.JLabel lblSexo;
     private javax.swing.JLabel lblTelefone;
     private javax.swing.JTable tblPropostas;
-    private javax.swing.JTextField txtAvaliacao1;
+    private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtBio;
     private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtCep;
@@ -422,7 +442,8 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void configTela(){
-        setLocationRelativeTo(null); // centraliza tela
+        setLocationRelativeTo(null);
+        configCamposEndereco();
     }
 
     public void eventos(){
@@ -442,7 +463,8 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                     " P.NOME AS NOMEPRES, P.EMAIL AS EMAILPRES, P.CPF AS CPFPRES," +
                     " P.TELEFONE AS TELEFONEPRES, P.CEP AS CEPPRES," +
                     " P.NUMERO AS NUMEROPRES, P.DATA_NASCIMENTO AS DATANASCPRES," +
-                    " P.SEXO AS SEXOPRES, P.CIDADE AS CIDADEPRES, P.ESTADO AS ESTADOPRES" +
+                    " P.SEXO AS SEXOPRES, P.CIDADE AS CIDADEPRES, P.ESTADO AS ESTADOPRES," +
+                    " P.TIPO_SERVICO, P.BIO" + 
                     " FROM CONTRATOS PC" + 
                     " LEFT JOIN CLIENTES U" + 
                     " ON (U.ID = PC.ID_CLIENTE)" + 
@@ -451,14 +473,41 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                     " WHERE ID_PRESTADOR = ?";
          return sql;
     }
+    
+    private void configurarColuna(JTable tabela, int indiceColuna, int largura, int alinhamento) {
+        TableColumn coluna = tabela.getColumnModel().getColumn(indiceColuna);
+
+        // 1. Configurar largura
+        coluna.setPreferredWidth(largura);
+        coluna.setMinWidth(50); // Largura mínima
+        coluna.setMaxWidth(500); // Largura máxima (opcional)
+
+        // 2. Configurar alinhamento
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(alinhamento);
+        coluna.setCellRenderer(renderer);
+
+        // 3. Configurar redimensionamento
+        coluna.setResizable(false); // Permite redimensionar
+    }
 
     public void carregarLista(){
-        String[] colunas = {"Nome", "Cidade", "Estado", "Data Ini.", "Data Fim",
-                            "Valor", "Status"};
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+
+        String[] colunas = {"Nome", "Cidade", "Estado", "Valor", "Data Ini.",
+                            "Data Fim", "Status"};
 
         DefaultTableModel model = new DefaultTableModel(colunas, 0);
         tblPropostas.setModel(model);
-
+        
+        configurarColuna(tblPropostas, 0, 200, JLabel.RIGHT);
+        configurarColuna(tblPropostas, 1, 200, JLabel.RIGHT);
+        configurarColuna(tblPropostas, 2, 50, JLabel.CENTER);
+        configurarColuna(tblPropostas, 3, 100, JLabel.LEFT);
+        configurarColuna(tblPropostas, 4, 100, JLabel.CENTER);
+        configurarColuna(tblPropostas, 5, 100, JLabel.CENTER);
+        configurarColuna(tblPropostas, 6, 80, JLabel.RIGHT);
+        
         String sql = mainQuery();
         
         try (Connection con = configConexao.getConexao();
@@ -489,14 +538,31 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                     c.setDataNascimento(rs.getDate("DATANASCCLI"));
                     c.setSexo(rs.getInt("SEXOCLI"));
 
+                    String status;
+                    
+                    switch (rs.getInt("STATUS")) {
+                        case 1:
+                            status = "Aceito";
+                            break;
+                            
+                        case 2:
+                            status = "Recusado";
+                            break;
+                        
+                        default:
+                            status = "Pendente";
+                            break;
+                    }
+                    
+                    
                     Object[] linha = {
                                         c.getNome(),
                                         c.getCidade(),
                                         c.getEstado(),
-                                        rs.getDouble("VALOR_PROPOSTO"),
-                                        rs.getDate("DATA_INICIO_CONTRATO"),
-                                        rs.getDate("DATA_FIM_CONTRATO"),
-                                        rs.getInt("STATUS")
+                                        String.format("R$ %,.2f", rs.getDouble("VALOR_PROPOSTO")),
+                                        f.format(rs.getDate("DATA_INICIO_CONTRATO")),
+                                        f.format(rs.getDate("DATA_FIM_CONTRATO")),
+                                        status
                     };
                     model.addRow(linha);
                     pcList.add(pc);
@@ -549,6 +615,8 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                     p.setNumero(rs.getString("NUMEROPRES"));
                     p.setDataNascimento(rs.getDate("DATANASCPRES"));
                     p.setSexo(rs.getInt("SEXOPRES"));
+                    p.setTipoServico(rs.getInt("TIPO_SERVICO"));
+                    p.setBio(rs.getString("BIO"));
                     
                     txtNome.setText(p.getNome());
                     txtEmail.setText(p.getEmail());
@@ -559,8 +627,21 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                     txtCep.setText(p.getCep());
                     txtNumero.setText(p.getNumero());
                     txtDataNascimento.setText(p.getDataNascimento().toString());
-                    cmbSexo.addItem(String.valueOf(p.getSexo()));
-                    cmbSexo.getItemAt(cmbSexo.getSelectedIndex());
+                    cmbSexo.removeAllItems();
+                    if(p.getSexo() == 0){
+                        cmbSexo.addItem("Feminino");
+                    }else{
+                        cmbSexo.addItem("Masculino");
+                    }
+                    cmbSexo.getItemAt(0);
+                    cmbServico.removeAllItems();
+                    cmbServico.addItem(p.getTipoServico() + " - " + RecursosAutomacao.retDescServico(p.getTipoServico()));
+                    cmbServico.getItemAt(0);
+                    Servico s = RecursosAutomacao.retCategoria(p.getTipoServico());
+                    cmbCategoria.removeAllItems();                  
+                    cmbCategoria.addItem(s.getCategoria() + " - " + s.getNomeCategoria());
+                    cmbCategoria.getItemAt(0);
+                    txtBio.setText(p.getBio());
                 } 
             }
         }catch (SQLException e) {
@@ -579,6 +660,64 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                   pcSelected = pcList.get(linha);
                   new TelaDecisaoContrato(TelaRecebeContratoPrestador.this, true).setVisible(true);
                 }           
+            }
+        });
+    }
+    
+    private void configCamposEndereco(){
+        txtCep.getDocument().addDocumentListener(new DocumentListener(){
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                verificarCEP();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                verificarCEP();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                verificarCEP();
+            }
+            
+            private void verificarCEP() {
+                if (txtCep.getText().length() == 8) {
+                    buscarEndereco(txtCep.getText());
+                }
+            }
+        });
+    }
+    
+    private void buscarEndereco(String cep) {
+        new Thread(() -> { 
+            try {
+                Endereco endereco = ViaCEPClient.buscarEnderecoPorCEP(cep);
+                
+                SwingUtilities.invokeLater(() -> {
+                    txtRua.setText(endereco.getLogradouro());
+                    txtBairro.setText(endereco.getBairro());
+                    txtCidade.setText(endereco.getLocalidade());
+                    txtEstado.setText(endereco.getUf());
+                });
+                
+            } catch (Exception e) {
+                SwingUtilities.invokeLater(() -> {
+                    JOptionPane.showMessageDialog(TelaRecebeContratoPrestador.this,
+                        "CEP não encontrado ou erro na consulta",
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE);
+                });
+                
+            }
+        }).start();
+    }
+    
+    public void cliclBtnExcluir(){
+        btnExcluir.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Prestador.delete(usuarioSistema.getId());
             }
         });
     }

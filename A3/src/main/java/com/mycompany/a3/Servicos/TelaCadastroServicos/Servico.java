@@ -12,6 +12,7 @@ public class Servico {
     String nomeServico;
     String descricao;
     int categoria;
+    String nomeCategoria;
 
     public int getId() {
         return id;
@@ -47,6 +48,14 @@ public class Servico {
     
     public boolean salvar() throws SQLException{
         return insert();
+    }
+
+    public String getNomeCategoria() {
+        return nomeCategoria;
+    }
+
+    public void setNomeCategoria(String nome_categoria) {
+        this.nomeCategoria = nome_categoria;
     }
     
     public boolean insert() throws SQLException{

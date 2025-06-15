@@ -1,6 +1,5 @@
 package com.mycompany.a3.UsuariosSistemas.TelaCadastroPrestador;
 
-import com.mycompany.a3.UsuariosSistemas.TelaCadastroCliente.Cliente;
 import com.mycompany.a3.UsuariosSistemas.UsuarioGeral;
 import com.mycompany.a3.config.configConexao;
 import java.sql.Connection;
@@ -9,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class Prestador extends UsuarioGeral{
@@ -152,6 +150,30 @@ public class Prestador extends UsuarioGeral{
         } catch (SQLException e) {
             return -1; // Valor inválido que será capturado depois
         }
+    }
+
+    public static boolean delete(int id) {
+        String sql = "DELETE FROM PRESTADORES" + 
+                    " WHERE ID = ?";
+        
+        try (Connection con = configConexao.getConexao(); 
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            // 1. ID  
+            ps.setInt(1, id);
+
+            int linhasAfetadas = ps.executeUpdate();
+            return linhasAfetadas > 0;
+
+        }  catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,  "Erro no banco de dados: " + e.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null,  "Dados inválidos: " + e.getMessage(),
+                "Erro de Validação", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } 
     }
 }
  

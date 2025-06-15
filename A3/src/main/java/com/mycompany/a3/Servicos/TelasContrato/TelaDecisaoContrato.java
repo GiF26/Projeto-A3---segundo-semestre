@@ -156,12 +156,10 @@ public class TelaDecisaoContrato extends javax.swing.JDialog {
         BtnAceitar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 if (screenMain.pcSelected.updateSatusContrato(screenMain.pcSelected.getId(), 1)) {
                     JOptionPane.showMessageDialog(null, "Contrato Realizado!");
                     dispose();
-                    screenMain.carregarLista();
-                    
+                    screenMain.carregarLista(); 
                 }
             }
         });
@@ -171,12 +169,10 @@ public class TelaDecisaoContrato extends javax.swing.JDialog {
         btnRecusar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 if (screenMain.pcSelected.updateSatusContrato(screenMain.pcSelected.getId(), 2)) {
-                    JOptionPane.showMessageDialog(null, "Contrato Realizado!");
+                    JOptionPane.showMessageDialog(null, "Contrato Recusado!");
                     dispose();
                     screenMain.carregarLista();
-                    
                 }
             }
         });
@@ -187,7 +183,7 @@ public class TelaDecisaoContrato extends javax.swing.JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new TelaLogin().setVisible(true);
+                screenMain.carregarLista();
             }
         });
     }
