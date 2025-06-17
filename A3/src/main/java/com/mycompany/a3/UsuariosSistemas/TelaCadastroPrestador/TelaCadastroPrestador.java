@@ -440,6 +440,7 @@ public class TelaCadastroPrestador extends javax.swing.JFrame {
                 if (p.salvar()) {
                     JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
                     dispose();
+                    new TelaLogin().setVisible(true);
                 }
             }
         });

@@ -1,3 +1,5 @@
+com\mycompany\a3\Servicos\TelaPesquisaServicos\TelaCriaContrato.class
+com\mycompany\a3\Servicos\TelaPesquisaServicos\TelaEnviaContratoCliente$1.class
 com\mycompany\a3\UsuariosSistemas\TelaCadastroCliente\Cliente.class
 com\mycompany\a3\UsuariosSistemas\TelaCadastroCliente\TelaCadastroCliente$6.class
 com\mycompany\a3\UsuariosSistemas\TelaCadastroPrestador\TelaCadastroPrestador$5.class
@@ -9,15 +11,17 @@ com\mycompany\a3\UsuariosSistemas\TelaCadastroCliente\TelaCadastroCliente$3.clas
 com\mycompany\a3\UsuariosSistemas\TelaLogin\TelaLogin$2.class
 com\mycompany\a3\UsuariosSistemas\TelaLogin\TelaLogin$1.class
 com\mycompany\a3\A3.class
+com\mycompany\a3\Servicos\TelaPesquisaServicos\TelaCriaContrato$2.class
 com\mycompany\a3\UsuariosSistemas\UsuarioGeral.class
 com\mycompany\a3\Servicos\TelasContrato\TelaDecisaoContrato$4.class
 com\mycompany\a3\config\configConexao.class
+com\mycompany\a3\Servicos\TelaPesquisaServicos\TelaEnviaContratoCliente$2.class
 com\mycompany\a3\Servicos\TelasContrato\TelaRecebeContratoPrestador$1.class
 com\mycompany\a3\UsuariosSistemas\UsuarioSistema.class
 com\mycompany\a3\UsuariosSistemas\TelaCadastroCliente\TelaCadastroCliente$2.class
-com\mycompany\a3\FormularioBase.class
 com\mycompany\a3\Servicos\TelaPesquisaServicos\TelaPesquisaServicos.class
 com\mycompany\a3\Servicos\TelasContrato\TelaCriaContratoCliente$2.class
+com\mycompany\a3\Servicos\TelaPesquisaServicos\TelaEnviaContratoCliente.class
 com\mycompany\a3\Servicos\TelasContrato\TelaDecisaoContrato$3.class
 com\mycompany\a3\Recursos\RecursosAutomacao.class
 com\mycompany\a3\UsuariosSistemas\TelaCadastroPrestador\TelaCadastroPrestador$2.class
@@ -25,9 +29,12 @@ com\mycompany\a3\Servicos\TelasContrato\TelaRecebeContratoPrestador$4.class
 com\mycompany\a3\UsuariosSistemas\TelaCadastroCliente\TelaCadastroCliente$5.class
 com\mycompany\a3\UsuariosSistemas\TelaLogin\TelaLogin$3.class
 com\mycompany\a3\Servicos\TelaCadastroServicos\TelaCadServico.class
+com\mycompany\a3\Servicos\TelaPesquisaServicos\TelaCriaContrato$1$1.class
 com\mycompany\a3\Servicos\TelaPesquisaServicos\TelaPesquisaServicos$3.class
 com\mycompany\a3\Servicos\TelaCadastroServicos\TelaCadServico$2.class
 com\mycompany\a3\Servicos\TelaCadastroServicos\Servico.class
+com\mycompany\a3\Servicos\TelaPesquisaServicos\TelaCriaContrato$3.class
+com\mycompany\a3\Servicos\TelaPesquisaServicos\TelaEnviaContratoCliente$3.class
 com\mycompany\a3\Recursos\ViaCEPClient.class
 com\mycompany\a3\Servicos\TelasContrato\TelaDecisaoContrato$2.class
 com\mycompany\a3\Servicos\TelasContrato\TelaRecebeContratoPrestador$3.class
@@ -47,6 +54,7 @@ com\mycompany\a3\Servicos\TelaCadastroServicos\TelaCadServico$1$1.class
 com\mycompany\a3\UsuariosSistemas\TelaCadastroPrestador\TelaCadastroPrestador$4.class
 com\mycompany\a3\Servicos\TelaCadastroServicos\TelaCadServico$1.class
 com\mycompany\a3\Servicos\TelasContrato\TelaCriaContratoCliente$1.class
+com\mycompany\a3\Servicos\TelaPesquisaServicos\TelaEnviaContratoCliente$4.class
 com\mycompany\a3\Servicos\TelaPesquisaServicos\TelaPesquisaServicos$1.class
 com\mycompany\a3\Servicos\TelaCadastroServicos\TelaCadServico$4.class
 com\mycompany\a3\UsuariosSistemas\TelaCadastroPrestador\TelaCadastroPrestador$7.class
@@ -54,3 +62,4 @@ com\mycompany\a3\Servicos\TelasContrato\TelaDecisaoContrato$1$1.class
 com\mycompany\a3\Recursos\DataFormatFilter.class
 com\mycompany\a3\UsuariosSistemas\TelaCadastroPrestador\Prestador.class
 com\mycompany\a3\UsuariosSistemas\TelaCadastroPrestador\TelaCadastroPrestador.class
+com\mycompany\a3\Servicos\TelaPesquisaServicos\TelaCriaContrato$1.class

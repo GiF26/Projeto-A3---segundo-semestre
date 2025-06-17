@@ -1,12 +1,9 @@
 package com.mycompany.a3.Servicos.TelasContrato;
 
-import com.mycompany.a3.Recursos.Endereco;
+
 import com.mycompany.a3.Recursos.RecursosAutomacao;
-import com.mycompany.a3.Recursos.ViaCEPClient;
-import com.mycompany.a3.Servicos.TelaCadastroServicos.Servico;
 import com.mycompany.a3.UsuariosSistemas.TelaCadastroCliente.Cliente;
 import com.mycompany.a3.UsuariosSistemas.TelaCadastroPrestador.Prestador;
-import com.mycompany.a3.UsuariosSistemas.TelaCadastroPrestador.TelaCadastroPrestador;
 import com.mycompany.a3.UsuariosSistemas.TelaLogin.TelaLogin;
 import com.mycompany.a3.UsuariosSistemas.UsuarioSistema;
 import com.mycompany.a3.config.configConexao;
@@ -18,18 +15,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.SwingUtilities;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
+
 
 /**
  *
@@ -37,13 +27,9 @@ import javax.swing.table.TableColumnModel;
  */
 public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaRecebeContratoPrestador.class.getName());
-    private UsuarioSistema usuarioSistema;
+    public UsuarioSistema usuarioSistema;
     public PreContrato pcSelected = new PreContrato();
     ArrayList<PreContrato> pcList = new ArrayList<>();
-    
-    /**
-     * Creates new form TelaRecebeContratoPrestador
-     */
     
     public TelaRecebeContratoPrestador() {
         initComponents();
@@ -101,7 +87,6 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
         txtDataNascimento = new javax.swing.JTextField();
         cmbSexo = new javax.swing.JComboBox<>();
         btnCancelar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         lblCategoria = new javax.swing.JLabel();
         cmbServico = new javax.swing.JComboBox<>();
@@ -184,9 +169,6 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
 
         btnCancelar.setText("Fechar");
 
-        btnExcluir.setText("Excluir");
-        btnExcluir.setToolTipText("");
-
         btnSalvar.setText("Salvar");
 
         lblCategoria.setText("Categoria");
@@ -248,17 +230,12 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                             .addComponent(lblNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnPerfilLayout.createSequentialGroup()
                                 .addComponent(btnCancelar)
-                                .addGap(173, 173, 173)
-                                .addComponent(btnExcluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnSalvar))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnPerfilLayout.createSequentialGroup()
                                 .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jpnPerfilLayout.createSequentialGroup()
-                                        .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addComponent(lblCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jpnPerfilLayout.createSequentialGroup()
                                         .addComponent(lblServico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(52, 52, 52)))
@@ -342,7 +319,6 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                         .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCancelar)
-                            .addComponent(btnExcluir)
                             .addComponent(btnSalvar)))
                     .addGroup(jpnPerfilLayout.createSequentialGroup()
                         .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,7 +335,7 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jtAbas, javax.swing.GroupLayout.DEFAULT_SIZE, 1070, Short.MAX_VALUE))
+                .addComponent(jtAbas))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,7 +376,6 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCancelarPropos;
-    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cmbCategoria;
     private javax.swing.JComboBox<String> cmbServico;
@@ -443,72 +418,31 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
 
     public void configTela(){
         setLocationRelativeTo(null);
-        configCamposEndereco();
     }
 
     public void eventos(){
         clickTblPropostas();
         clickBtnFechar();
     }
-    
-    public String mainQuery(){
-         String sql = "SELECT PC.ID, PC.ID_CLIENTE, PC.ID_PRESTADOR," +
-                    " PC.VALOR_PROPOSTO, PC.SERVICO, PC.DATA_INICIO_CONTRATO," +
-                    " PC.DATA_FIM_CONTRATO, PC.STATUS," +
-                    " U.NOME AS NOMECLI, U.EMAIL AS EMAILCLI, U.CPF AS CPFCLI," +
-                    " U.TELEFONE AS TELEFONECLI, U.CEP AS CEPCLI," +
-                    " U.NUMERO AS NUMEROCLI, U.DATA_NASCIMENTO AS DATANASCCLI," +
-                    " U.SEXO AS SEXOCLI, U.CIDADE AS CIDADECLI," +
-                    " U.ESTADO AS ESTADOCLI," + 
-                    " P.NOME AS NOMEPRES, P.EMAIL AS EMAILPRES, P.CPF AS CPFPRES," +
-                    " P.TELEFONE AS TELEFONEPRES, P.CEP AS CEPPRES," +
-                    " P.NUMERO AS NUMEROPRES, P.DATA_NASCIMENTO AS DATANASCPRES," +
-                    " P.SEXO AS SEXOPRES, P.CIDADE AS CIDADEPRES, P.ESTADO AS ESTADOPRES," +
-                    " P.TIPO_SERVICO, P.BIO" + 
-                    " FROM CONTRATOS PC" + 
-                    " LEFT JOIN CLIENTES U" + 
-                    " ON (U.ID = PC.ID_CLIENTE)" + 
-                    " LEFT JOIN PRESTADORES P" + 
-                    " ON (P.ID = PC.ID_PRESTADOR)" + 
-                    " WHERE ID_PRESTADOR = ?";
-         return sql;
-    }
-    
-    private void configurarColuna(JTable tabela, int indiceColuna, int largura, int alinhamento) {
-        TableColumn coluna = tabela.getColumnModel().getColumn(indiceColuna);
-
-        // 1. Configurar largura
-        coluna.setPreferredWidth(largura);
-        coluna.setMinWidth(50); // Largura mínima
-        coluna.setMaxWidth(500); // Largura máxima (opcional)
-
-        // 2. Configurar alinhamento
-        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-        renderer.setHorizontalAlignment(alinhamento);
-        coluna.setCellRenderer(renderer);
-
-        // 3. Configurar redimensionamento
-        coluna.setResizable(false); // Permite redimensionar
-    }
 
     public void carregarLista(){
-        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-
         String[] colunas = {"Nome", "Cidade", "Estado", "Valor", "Data Ini.",
                             "Data Fim", "Status"};
 
         DefaultTableModel model = new DefaultTableModel(colunas, 0);
-        tblPropostas.setModel(model);
+        tblPropostas.setModel(model);        
+        RecursosAutomacao.configurarColuna(tblPropostas, 0, 200, JLabel.RIGHT);
+        RecursosAutomacao.configurarColuna(tblPropostas, 1, 200, JLabel.RIGHT);
+        RecursosAutomacao.configurarColuna(tblPropostas, 2, 50, JLabel.CENTER);
+        RecursosAutomacao.configurarColuna(tblPropostas, 3, 100, JLabel.LEFT);
+        RecursosAutomacao.configurarColuna(tblPropostas, 4, 100, JLabel.CENTER);
+        RecursosAutomacao.configurarColuna(tblPropostas, 5, 100, JLabel.CENTER);
+        RecursosAutomacao.configurarColuna(tblPropostas, 6, 80, JLabel.RIGHT);
         
-        configurarColuna(tblPropostas, 0, 200, JLabel.RIGHT);
-        configurarColuna(tblPropostas, 1, 200, JLabel.RIGHT);
-        configurarColuna(tblPropostas, 2, 50, JLabel.CENTER);
-        configurarColuna(tblPropostas, 3, 100, JLabel.LEFT);
-        configurarColuna(tblPropostas, 4, 100, JLabel.CENTER);
-        configurarColuna(tblPropostas, 5, 100, JLabel.CENTER);
-        configurarColuna(tblPropostas, 6, 80, JLabel.RIGHT);
-        
-        String sql = mainQuery();
+        String sql = "SELECT ID, ID_CLIENTE, ID_PRESTADOR, VALOR_PROPOSTO," +
+                    " SERVICO, DATA_INICIO_CONTRATO, DATA_FIM_CONTRATO, STATUS" + 
+                    " FROM CONTRATOS" +  
+                    " WHERE ID_PRESTADOR = ?";
         
         try (Connection con = configConexao.getConexao();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -517,6 +451,8 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
 
             try(ResultSet rs = ps.executeQuery()){
                 while (rs.next()) {
+                    Cliente c = RecursosAutomacao.retCli(rs.getInt("ID_CLIENTE"));
+                    
                     PreContrato pc = new PreContrato();
                     pc.setId(rs.getInt("ID"));
                     pc.setIdCliente(rs.getInt("ID_CLIENTE"));
@@ -525,18 +461,6 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                     pc.setDataIni(rs.getDate("DATA_INICIO_CONTRATO"));
                     pc.setDataIni(rs.getDate("DATA_FIM_CONTRATO"));
                     pc.setStatus(rs.getInt("STATUS"));
-                    
-                    Cliente c = new Cliente();
-                    c.setId(rs.getInt("ID_CLIENTE"));
-                    c.setNome(rs.getString("NOMECLI"));
-                    c.setEmail(rs.getString("EMAILCLI"));
-                    c.setCpf(rs.getString("CPFCLI"));
-                    c.setTelefone(rs.getString("TELEFONECLI"));
-                    c.setCidade(rs.getString("CIDADECLI"));
-                    c.setEstado(rs.getString("ESTADOCLI"));
-                    c.setCep(rs.getString("CEPCLI"));
-                    c.setDataNascimento(rs.getDate("DATANASCCLI"));
-                    c.setSexo(rs.getInt("SEXOCLI"));
 
                     String status;
                     
@@ -553,15 +477,14 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
                             status = "Pendente";
                             break;
                     }
-                    
-                    
+                                        
                     Object[] linha = {
                                         c.getNome(),
                                         c.getCidade(),
                                         c.getEstado(),
                                         String.format("R$ %,.2f", rs.getDouble("VALOR_PROPOSTO")),
-                                        f.format(rs.getDate("DATA_INICIO_CONTRATO")),
-                                        f.format(rs.getDate("DATA_FIM_CONTRATO")),
+                                        RecursosAutomacao.formataData(rs.getDate("DATA_INICIO_CONTRATO")),
+                                        RecursosAutomacao.formataData(rs.getDate("DATA_FIM_CONTRATO")),
                                         status
                     };
                     model.addRow(linha);
@@ -593,64 +516,6 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
         });
     }
     
-    public void carregaAbaPerfil(){
-        String sql = mainQuery();
-        
-        try (Connection con = configConexao.getConexao();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            
-            ps.setInt(1, usuarioSistema.getId());
-
-            try(ResultSet rs = ps.executeQuery()){
-                while (rs.next()) {
-                    Prestador p = new Prestador();
-                    p.setId(rs.getInt("ID_PRESTADOR"));
-                    p.setNome(rs.getString("NOMEPRES"));
-                    p.setEmail(rs.getString("EMAILPRES"));
-                    p.setCpf(rs.getString("CPFPRES"));
-                    p.setTelefone(rs.getString("TELEFONEPRES"));
-                    p.setCidade(rs.getString("CIDADEPRES"));
-                    p.setEstado(rs.getString("ESTADOPRES"));
-                    p.setCep(rs.getString("CEPPRES"));
-                    p.setNumero(rs.getString("NUMEROPRES"));
-                    p.setDataNascimento(rs.getDate("DATANASCPRES"));
-                    p.setSexo(rs.getInt("SEXOPRES"));
-                    p.setTipoServico(rs.getInt("TIPO_SERVICO"));
-                    p.setBio(rs.getString("BIO"));
-                    
-                    txtNome.setText(p.getNome());
-                    txtEmail.setText(p.getEmail());
-                    txtCPF.setText(p.getCpf());
-                    txtTelefone.setText(p.getTelefone());
-                    txtCidade.setText(p.getCidade());
-                    txtEstado.setText(p.getEstado());
-                    txtCep.setText(p.getCep());
-                    txtNumero.setText(p.getNumero());
-                    txtDataNascimento.setText(p.getDataNascimento().toString());
-                    cmbSexo.removeAllItems();
-                    if(p.getSexo() == 0){
-                        cmbSexo.addItem("Feminino");
-                    }else{
-                        cmbSexo.addItem("Masculino");
-                    }
-                    cmbSexo.getItemAt(0);
-                    cmbServico.removeAllItems();
-                    cmbServico.addItem(p.getTipoServico() + " - " + RecursosAutomacao.retDescServico(p.getTipoServico()));
-                    cmbServico.getItemAt(0);
-                    Servico s = RecursosAutomacao.retCategoria(p.getTipoServico());
-                    cmbCategoria.removeAllItems();                  
-                    cmbCategoria.addItem(s.getCategoria() + " - " + s.getNomeCategoria());
-                    cmbCategoria.getItemAt(0);
-                    txtBio.setText(p.getBio());
-                } 
-            }
-        }catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, 
-            "Erro ao carregar prestadores: " + e.getMessage(),
-            "Erro", JOptionPane.ERROR_MESSAGE);
-        } 
-    }
-    
     public void clickTblPropostas(){
         tblPropostas.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e) {
@@ -664,61 +529,57 @@ public final class TelaRecebeContratoPrestador extends javax.swing.JFrame {
         });
     }
     
-    private void configCamposEndereco(){
-        txtCep.getDocument().addDocumentListener(new DocumentListener(){
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                verificarCEP();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                verificarCEP();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                verificarCEP();
-            }
-            
-            private void verificarCEP() {
-                if (txtCep.getText().length() == 8) {
-                    buscarEndereco(txtCep.getText());
-                }
-            }
-        });
-    }
+//        public void cliclBtnExcluir(){
+//        btnExcluir.addActionListener(new ActionListener(){
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                Prestador.delete(usuarioSistema.getId());
+//            }
+//        });
+//    }
     
-    private void buscarEndereco(String cep) {
-        new Thread(() -> { 
-            try {
-                Endereco endereco = ViaCEPClient.buscarEnderecoPorCEP(cep);
-                
-                SwingUtilities.invokeLater(() -> {
-                    txtRua.setText(endereco.getLogradouro());
-                    txtBairro.setText(endereco.getBairro());
-                    txtCidade.setText(endereco.getLocalidade());
-                    txtEstado.setText(endereco.getUf());
-                });
-                
-            } catch (Exception e) {
-                SwingUtilities.invokeLater(() -> {
-                    JOptionPane.showMessageDialog(TelaRecebeContratoPrestador.this,
-                        "CEP não encontrado ou erro na consulta",
-                        "Erro",
-                        JOptionPane.ERROR_MESSAGE);
-                });
-                
-            }
-        }).start();
-    }
-    
-    public void cliclBtnExcluir(){
-        btnExcluir.addActionListener(new ActionListener(){
+    public void clickBtnUpdate(){
+        btnSalvar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                Prestador.delete(usuarioSistema.getId());
+                
             }
         });
     }
+
+    public void carregaAbaPerfil(){
+        Prestador p = RecursosAutomacao.retPrestador(usuarioSistema.getId());
+                    
+        txtNome.setText(p.getNome());
+        txtEmail.setText(p.getEmail());
+        txtCPF.setText(p.getCpf());
+        txtTelefone.setText(p.getTelefone());
+        txtCidade.setText(p.getCidade());
+        txtEstado.setText(p.getEstado());
+        txtCep.setText(p.getCep());
+        txtNumero.setText(p.getNumero());
+        txtRua.setText(p.getRua());
+        txtBairro.setText(p.getBairro());
+        txtDataNascimento.setText(RecursosAutomacao.formataData(p.getDataNascimento()));
+        txtBio.setText(p.getBio());    
+        txtComplemento.setText(p.getComplemento());
+        
+        cmbSexo.removeAllItems();
+        if(p.getSexo() == 0){
+            cmbSexo.addItem("Feminino");
+        }else{
+            cmbSexo.addItem("Masculino");
+        }
+        cmbSexo.getItemAt(0);
+        
+        cmbServico.removeAllItems();
+        cmbServico.addItem(p.getTipoServico() + " - " + RecursosAutomacao.retServico(p.getTipoServico()).getNomeServico());
+        cmbServico.getItemAt(0);
+        
+        cmbCategoria.removeAllItems();                  
+        cmbCategoria.addItem(RecursosAutomacao.retServico(p.getTipoServico()).getCategoria() + " - " + RecursosAutomacao.retServico(p.getTipoServico()).getNomeCategoria());
+        cmbCategoria.getItemAt(0);
+        
+    }
+
 }

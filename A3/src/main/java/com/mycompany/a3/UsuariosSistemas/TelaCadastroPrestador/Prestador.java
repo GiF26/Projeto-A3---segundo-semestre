@@ -46,9 +46,9 @@ public class Prestador extends UsuarioGeral{
 
     @Override
     protected boolean insert() {
-        String sql = "INSERT INTO PRESTADOR (ID, NOME, EMAIL, SENHA, CPF, TELEFONE," +
+        String sql = "INSERT INTO PRESTADORES (ID, NOME, EMAIL, SENHA, CPF, TELEFONE," +
                     " RUA, BAIRRO, NUMERO, COMPLEMENTO, CIDADE, ESTADO, CEP," +
-                    " BIO, TIPO_SERVICE, DATA_NASCIMENTO, SEXO, TIPOUSUARIO) " +
+                    " BIO, TIPO_SERVICO, DATA_NASCIMENTO, SEXO, TIPOUSUARIO) " +
                     " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         
         try (Connection con = configConexao.getConexao(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -58,8 +58,7 @@ public class Prestador extends UsuarioGeral{
             }
 
             // 1. ID - Verifique se geraId() retorna um valor válido
-            int id = geraId();
-            ps.setInt(1, id);
+            ps.setInt(1, geraId());
 
             // 2. Nome - Verifique se não é nulo
             String nome = getNome();
@@ -138,7 +137,7 @@ public class Prestador extends UsuarioGeral{
     
     @Override
     protected int geraId() {
-        String sql = "SELECT COALESCE(MAX(ID), 0) + 1 FROM PRESTADOR";
+        String sql = "SELECT COALESCE(MAX(ID), 0) + 1 FROM PRESTADORES";
         try (Connection con = configConexao.getConexao()) {
             assert con != null;
             
@@ -154,6 +153,34 @@ public class Prestador extends UsuarioGeral{
 
     public static boolean delete(int id) {
         String sql = "DELETE FROM PRESTADORES" + 
+                    " WHERE ID = ?";
+        
+        try (Connection con = configConexao.getConexao(); 
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            // 1. ID  
+            ps.setInt(1, id);
+
+            int linhasAfetadas = ps.executeUpdate();
+            return linhasAfetadas > 0;
+
+        }  catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,  "Erro no banco de dados: " + e.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null,  "Dados inválidos: " + e.getMessage(),
+                "Erro de Validação", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } 
+    }
+    
+    public static boolean update(int id) {
+        String sql = "UPDATE PRESTADORES SET NOME = ?, EMAIL = ? , SENHA = ?," + 
+                    " CPF = ?, TELEFONE = ?, RUA = ?, BAIRRO = ?, NUMERO = ?," +
+                    " COMPLEMENTO = ?, CIDADE = ?, ESTADO = ?, CEP = ?," + 
+                    " BIO = ?, TIPO_SERVICO = ?, DATA_NASCIMENTO = ?, SEXO = ?," +
+                    " TIPOUSUARIO = ?" +
                     " WHERE ID = ?";
         
         try (Connection con = configConexao.getConexao(); 

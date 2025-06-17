@@ -60,23 +60,21 @@ public class Servico {
     
     public boolean insert() throws SQLException{
         
-        String sql = "INSERT INTO SERVICE (ID, NOME_SERVICE, DESCRICAO, CATEGORIA)" +
-                " VALUES (?,?,?,?)";
+        String sql = "INSERT INTO SERVICOS (ID, NOME_SERVICO, CATEGORIA)" +
+                " VALUES (?,?,?)";
         
         try(Connection con = configConexao.getConexao(); PreparedStatement ps = con.prepareStatement(sql)){
             
             //1. ID - Verifique se geraId() retorna um valor válido
             int id = geraId();
-            ps.setInt(1, id);
+            ps.setInt(1, geraId());
             
             //2. Nome do Servico
             ps.setString(2, getNomeServico());
-            
-            //3. Descricao do Servico
-            ps.setString(3, getDescricao());
+           
             
             //4. Categoria
-            ps.setInt(4, getCategoria());
+            ps.setInt(3, getCategoria());
             
             int linhasAfetadas = ps.executeUpdate();
             return linhasAfetadas > 0;
@@ -93,7 +91,7 @@ public class Servico {
     }
     
     private int geraId(){
-        String sql = "SELECT COALESCE(MAX(ID), 0) + 1 FROM SERVICE";
+        String sql = "SELECT COALESCE(MAX(ID), 0) + 1 FROM SERVICOS";
         try (Connection con = configConexao.getConexao()) {
             assert con != null;
             try (PreparedStatement ps = con.prepareStatement(sql);

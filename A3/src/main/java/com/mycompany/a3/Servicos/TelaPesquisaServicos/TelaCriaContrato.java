@@ -1,9 +1,8 @@
-package com.mycompany.a3.Servicos.TelasContrato;
+package com.mycompany.a3.Servicos.TelaPesquisaServicos;
 
 import com.mycompany.a3.Recursos.DataFormatFilter;
-import com.mycompany.a3.Servicos.TelaPesquisaServicos.TelaPesquisaServicos;
+import com.mycompany.a3.Servicos.TelasContrato.PreContrato;
 import com.mycompany.a3.UsuariosSistemas.TelaCadastroPrestador.Prestador;
-import com.mycompany.a3.UsuariosSistemas.UsuarioSistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -16,16 +15,16 @@ import javax.swing.text.AbstractDocument;
  *
  * @author Giovana Ferreira
  */
-public class TelaCriaContratoCliente extends javax.swing.JFrame {
+public class TelaCriaContrato extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCriaContratoCliente.class.getName());
-    Prestador p;
-    UsuarioSistema usuarioSistema;
-    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCriaContrato.class.getName());
+    TelaEnviaContratoCliente screenMain;
+
     /**
-     * Creates new form TelaCriaContratoCliente
+     * Creates new form TelaCriaContrato
      */
-    public TelaCriaContratoCliente() {
+    public TelaCriaContrato(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         configTela();
         eventos();
@@ -44,7 +43,6 @@ public class TelaCriaContratoCliente extends javax.swing.JFrame {
         lblFotoPerfil = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtBio = new javax.swing.JTextArea();
-        lblDadosPessoais = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtDataNascimento = new javax.swing.JTextField();
         lblNome = new javax.swing.JLabel();
@@ -66,9 +64,8 @@ public class TelaCriaContratoCliente extends javax.swing.JFrame {
         btnContratar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lblFotoPerfil.setLabelFor(abaPerfilPrestador);
         lblFotoPerfil.setText("Foto Perfil");
         lblFotoPerfil.setToolTipText("");
         lblFotoPerfil.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -76,8 +73,6 @@ public class TelaCriaContratoCliente extends javax.swing.JFrame {
         txtBio.setColumns(20);
         txtBio.setRows(5);
         jScrollPane1.setViewportView(txtBio);
-
-        lblDadosPessoais.setText("Dados Pessoais");
 
         lblNome.setText("Nome");
 
@@ -110,60 +105,56 @@ public class TelaCriaContratoCliente extends javax.swing.JFrame {
             .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
                 .addComponent(lblFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, abaPerfilPrestadorLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 343, Short.MAX_VALUE)
-                        .addComponent(lblDadosPessoais, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(326, 326, 326))
                     .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 329, Short.MAX_VALUE)
+                        .addGap(385, 385, 385)
+                        .addComponent(btnCancelar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
+                        .addGap(275, 275, 275)
                         .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
-                                .addComponent(btnCancelar)
-                                .addGap(0, 363, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, abaPerfilPrestadorLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDataIni1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblValor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDataIni1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
-                                        .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblValor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblDataIni1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(12, 12, 12)
-                                        .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
-                                                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE))
-                                            .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
-                                                .addComponent(txtDataIni1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(lblDataFim1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txtDataFim1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(lblDataFim1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtDataFim1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblDataNascimento, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblNome, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblEstado, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblTelefone, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addGap(0, 18, Short.MAX_VALUE)
-                                        .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
-                                                .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, abaPerfilPrestadorLayout.createSequentialGroup()
-                                                        .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
-                                                        .addComponent(txtEstado)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(lblCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(cmbSexo, 0, 156, Short.MAX_VALUE)
-                                                    .addComponent(txtCidade)))
-                                            .addComponent(btnContratar, javax.swing.GroupLayout.Alignment.TRAILING))))
-                                .addGap(53, 53, 53))))))
+                                        .addGap(220, 220, 220)
+                                        .addComponent(btnContratar)))
+                                .addGap(53, 53, 53))
+                            .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
+                                .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDataNascimento, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblEstado, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblTelefone, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
+                                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
+                                            .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
             .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -174,9 +165,7 @@ public class TelaCriaContratoCliente extends javax.swing.JFrame {
                 .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblDadosPessoais)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(37, 37, 37)
                         .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblNome))
@@ -187,28 +176,31 @@ public class TelaCriaContratoCliente extends javax.swing.JFrame {
                             .addComponent(lblSexo)
                             .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCidade)
-                            .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblEstado)
-                                .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblEstado)
+                            .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCidade))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
-                        .addComponent(lblTelefone)
-                        .addGap(2, 2, 2)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTelefone)
+                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblDataIni1)
+                                    .addComponent(txtDataIni1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblDataFim1)
+                                    .addComponent(txtDataFim1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 17, Short.MAX_VALUE))
                     .addGroup(abaPerfilPrestadorLayout.createSequentialGroup()
-                        .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDataIni1)
-                            .addComponent(txtDataIni1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDataFim1)
-                            .addComponent(txtDataFim1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(96, 96, 96)
                         .addGroup(abaPerfilPrestadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblValor)
                             .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -223,10 +215,7 @@ public class TelaCriaContratoCliente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(abaPerfilPrestador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(abaPerfilPrestador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,8 +248,20 @@ public class TelaCriaContratoCliente extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaCriaContratoCliente().setVisible(true));
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                TelaCriaContrato dialog = new TelaCriaContrato(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -270,7 +271,6 @@ public class TelaCriaContratoCliente extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbSexo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCidade;
-    private javax.swing.JLabel lblDadosPessoais;
     private javax.swing.JLabel lblDataFim1;
     private javax.swing.JLabel lblDataIni1;
     private javax.swing.JLabel lblDataNascimento;
@@ -291,7 +291,7 @@ public class TelaCriaContratoCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 
-    private void configTela(){
+     private void configTela(){
         setLocationRelativeTo(null); // centraliza tela
         configCampos();
     }
@@ -305,9 +305,9 @@ public class TelaCriaContratoCliente extends javax.swing.JFrame {
        clickBtnFechar();
     }
     
-    public void carregaTela(Prestador p){
+    public void carregaTela(){
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        this.p = p;
+        Prestador p = screenMain.pcSelected;
         
         txtNome.setText(p.getNome());
         txtDataNascimento.setText(df.format(p.getDataNascimento()));
@@ -350,10 +350,10 @@ public class TelaCriaContratoCliente extends javax.swing.JFrame {
                 }
 
                 PreContrato pc = new PreContrato();
-                pc.setIdCliente(usuarioSistema.getId());
-                pc.setIdPrestador(p.getId());
+                pc.setIdCliente(screenMain.usuarioSistema.getId());
+                pc.setIdPrestador(screenMain.pcSelected.getId());
                 pc.setValor(Double.parseDouble(txtValor.getText()));
-                pc.setServico(p.getTipoServico());
+                pc.setServico(screenMain.pcSelected.getTipoServico());
                 pc.setDataIni(dataIni);
                 pc.setDataFim(dataFim);
                 pc.setStatus(0);
@@ -373,8 +373,8 @@ public class TelaCriaContratoCliente extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-//                TelaPesquisaServicos tps = new TelaPesquisaServicos();
-//                tps.setVisible(true);
+                TelaPesquisaServicos tps = new TelaPesquisaServicos();
+                tps.setVisible(true);
             }
         });
     }    
@@ -386,9 +386,5 @@ public class TelaCriaContratoCliente extends javax.swing.JFrame {
         doc.setDocumentFilter(new DataFormatFilter());
         doc = (AbstractDocument) txtDataFim1.getDocument();
         doc.setDocumentFilter(new DataFormatFilter());
-    }
-    
-    public void getUsuarioSistema(UsuarioSistema u){
-        this.usuarioSistema = u;
     }
 }

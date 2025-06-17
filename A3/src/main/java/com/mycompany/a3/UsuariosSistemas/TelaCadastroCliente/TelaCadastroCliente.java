@@ -393,6 +393,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                 if (c.salvar()) {
                     JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
                     dispose();
+                    new TelaLogin().setVisible(true);
                 }
             }
         });

@@ -189,8 +189,8 @@ public class TelaLogin extends JFrame {
                     if(usuarioSistema.getTipoUsuario() == 1){
                         new TelaRecebeContratoPrestador(usuarioSistema).setVisible(true);
                     }else{
-//                        new TelaPesquisaServicos(usuarioSistema).setVisible(true);
-                        new TelaPesquisaServicos().setVisible(true);
+                        new TelaPesquisaServicos(usuarioSistema).setVisible(true);
+//                          new TelaEnviaContratoCliente(usuarioSistema).setVisible(true);
                     }              
                 } else{
                     JOptionPane.showMessageDialog(null,  "Login ou senha de usuario incorreto",  

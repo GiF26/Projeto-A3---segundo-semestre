@@ -1,6 +1,5 @@
 package com.mycompany.a3.Servicos.TelasContrato;
 
-import com.mycompany.a3.UsuariosSistemas.TelaLogin.TelaLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;

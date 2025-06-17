@@ -86,7 +86,7 @@ public class PreContrato {
     
     public boolean insert(){
     
-        String sql = "INSERT INTO PRECONTRATO (ID_PRE_CONTRATO, ID_CLIENTE, " +
+        String sql = "INSERT INTO CONTRATOS (ID, ID_CLIENTE, " +
                 " ID_PRESTADOR, VALOR_PROPOSTO, SERVICO, DATA_INICIO_CONTRATO," +
                 " DATA_FIM_CONTRATO, STATUS)" + 
                 " VALUES (?,?,?,?,?,?,?,?)";
@@ -141,7 +141,7 @@ public class PreContrato {
     }
     
     private int geraId(){
-        String sql = "SELECT COALESCE(MAX(ID_PRE_CONTRATO), 0) + 1 FROM PRECONTRATO";
+        String sql = "SELECT COALESCE(MAX(ID), 0) + 1 FROM CONTRATOS";
         try (Connection con = configConexao.getConexao()) {
             assert con != null;
             

@@ -25,9 +25,14 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaPesquisaServicos.class.getName());
     private ArrayList <Prestador> listaPrestador = new ArrayList();
-    private UsuarioSistema usuarioSistema = new UsuarioSistema();
+    public UsuarioSistema usuarioSistema = new UsuarioSistema();
 
     public TelaPesquisaServicos() {
+        initComponents();
+    }
+    
+    public TelaPesquisaServicos(UsuarioSistema u) {
+        this.usuarioSistema = u;
         initComponents();
         configTela();
         eventos();
@@ -272,7 +277,7 @@ public class TelaPesquisaServicos extends javax.swing.JFrame {
             if (linha != -1) {
                 TelaCriaContratoCliente contrato = new TelaCriaContratoCliente();
                 contrato.getUsuarioSistema(usuarioSistema);
-                dispose();
+//                dispose();
                 contrato.setVisible(true);
                 contrato.carregaTela(listaPrestador.get(linha));
                 }           

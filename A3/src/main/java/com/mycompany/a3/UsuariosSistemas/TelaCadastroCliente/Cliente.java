@@ -21,7 +21,7 @@ public class Cliente extends UsuarioGeral{
     @Override
     protected boolean insert() {
         
-        String sql = "INSERT INTO USUARIO (ID, NOME, EMAIL, SENHA, CPF, TELEFONE," +
+        String sql = "INSERT INTO CLIENTES (ID, NOME, EMAIL, SENHA, CPF, TELEFONE," +
                     " RUA, BAIRRO, NUMERO, COMPLEMENTO, CIDADE, ESTADO, CEP," +
                     " DATA_NASCIMENTO, SEXO, TIPOUSUARIO)" +
                     " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";

@@ -32,9 +32,8 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jtAbas" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jtAbas" min="-2" pref="793" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -44,11 +43,11 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jpnProposta">
+        <Container class="javax.swing.JPanel" name="jpnPesquisaPres">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Proposta">
-                <Property name="tabTitle" type="java.lang.String" value="Proposta"/>
+              <JTabbedPaneConstraints tabName="Pesquisa Prestadores">
+                <Property name="tabTitle" type="java.lang.String" value="Pesquisa Prestadores"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -57,12 +56,17 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="1064" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnCancelarPropos" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="1" pref="1108" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="btnCancelar1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="txtPesquisa1" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btnPesquisar1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -71,25 +75,35 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="437" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtPesquisa1" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="btnPesquisar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnCancelarPropos" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="10" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="467" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnCancelar1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="209" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+            <Component class="javax.swing.JButton" name="btnCancelar1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cancelar"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tblPropostas">
+                <Component class="javax.swing.JTable" name="tblPesquisarPrestador">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
@@ -103,9 +117,14 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnCancelarPropos">
+            <Component class="javax.swing.JTextField" name="txtPesquisa1">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPesquisa1ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnPesquisar1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Fechar"/>
+                <Property name="text" type="java.lang.String" value="Pesquisar"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -125,94 +144,71 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblFoto" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="txtBio" alignment="0" min="-2" pref="290" max="-2" attributes="0"/>
+                          <Component id="lblFoto" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="txtBio" min="-2" pref="340" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtCidade" min="-2" pref="222" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="txtNome" alignment="0" min="-2" pref="345" max="-2" attributes="0"/>
-                                      <Component id="txtEmail" alignment="0" min="-2" pref="345" max="-2" attributes="0"/>
-                                      <Component id="txtCPF" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                                      <Component id="txtTelefone" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                                      <Component id="txtCep" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                                      <Component id="txtDataNascimento" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                                  </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="txtNome" alignment="0" min="-2" pref="345" max="-2" attributes="0"/>
+                                  <Component id="txtEmail" alignment="0" min="-2" pref="345" max="-2" attributes="0"/>
+                                  <Component id="txtCPF" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                                  <Component id="txtTelefone" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                                  <Component id="txtCep" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                                  <Component id="txtDataNascimento" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblDataNascimento" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="lblSexo" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="cmbSexo" min="-2" pref="165" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblRua" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                                          <Component id="lblTelefone" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblCep" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="lblEstado" alignment="1" min="-2" pref="106" max="-2" attributes="0"/>
-                                                  <Component id="lblBairro" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                              <Component id="txtEstado" min="-2" pref="49" max="-2" attributes="0"/>
-                                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblDataNascimento" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace pref="218" max="32767" attributes="0"/>
+                                          <Component id="lblSexo" min="-2" pref="37" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="cmbSexo" min="-2" pref="165" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="lblCidade" min="-2" pref="44" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="lblCPF" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                                  <Component id="lblEmail" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                                  <Component id="lblNome" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="lblCategoria" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lblRua" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <Component id="lblTelefone" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblCep" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="1" attributes="0">
+                                                      <Component id="lblEstado" alignment="1" min="-2" pref="106" max="-2" attributes="0"/>
+                                                      <Component id="lblBairro" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                                  <Component id="txtEstado" min="-2" pref="49" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="lblCidade" min="-2" pref="44" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtCidade" min="-2" pref="222" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="lblCPF" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Component id="lblEmail" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Component id="lblNome" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Component id="btnSalvar" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="lblComplemento" min="-2" pref="106" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="lblServico" max="32767" attributes="0"/>
-                                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="txtBairro" alignment="0" pref="335" max="32767" attributes="0"/>
+                                              <Component id="txtComplemento" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txtRua" alignment="0" max="32767" attributes="0"/>
                                           </Group>
-                                      </Group>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="txtBairro" alignment="0" pref="335" max="32767" attributes="0"/>
-                                                  <Component id="txtComplemento" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="txtRua" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="lblNumero" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="txtNumero" min="-2" pref="71" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                              <Component id="cmbServico" alignment="0" min="-2" pref="243" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="cmbCategoria" min="-2" pref="243" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblNumero" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="txtNumero" min="-2" pref="71" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Component id="btnCancelar" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -225,7 +221,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblNome" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtNome" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -281,29 +277,19 @@
                                   <Component id="lblComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblServico" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbServico" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="129" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="206" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnSalvar" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCancelar" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Component id="lblFoto" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtBio" max="32767" attributes="0"/>
+                              <Component id="txtBio" min="-2" pref="338" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="249" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -371,11 +357,6 @@
                 <Property name="text" type="java.lang.String" value="Complemento"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblServico">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Servico"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="lblDataNascimento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nascimento"/>
@@ -432,41 +413,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblCategoria">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Categoria"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cmbServico">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cmbCategoria">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="lblBairro">
               <Properties>
